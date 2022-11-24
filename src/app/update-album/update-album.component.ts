@@ -16,20 +16,29 @@ export class UpdateAlbumComponent implements OnInit {
   currentAlbum = new Album();
 
   labels!: Label[];
-  updatedLabelId!: number;
+  updatedLabelId?: number;
 
   constructor(private activatedRoute : ActivatedRoute, private albumService : AlbumService, private router : Router) { }
 
   ngOnInit(): void {
-    this.labels = this.albumService.labelsList();
-    this.currentAlbum = this.albumService.getAlbumById (this.activatedRoute.snapshot.params['id']);
-    this.updatedLabelId = this.currentAlbum.label.idLabel;
+    /* this.labels = this.albumService.labelsList(); */
+    this.albumService.labelsList().subscribe (labs => {
+      this.labels = labs;
+      console.log(labs);
+    })
+
+    this.albumService.getAlbumById(this.activatedRoute.snapshot.params['id']).subscribe( data => {
+      this.currentAlbum = data;
+      this.updatedLabelId = this.currentAlbum.label.idLabel;
+    });
   }
 
   updateAlbum() {
-    this.currentAlbum.label = this.albumService.getLabelById(this.updatedLabelId);
-    this.albumService.updateAlbum(this.currentAlbum);
-    this.router.navigate(['albums']);
+    /* this.currentAlbum.label = this.albumService.getLabelById(this.updatedLabelId); */
+    this.currentAlbum.label = this.labels.find (lab => lab.idLabel === this.updatedLabelId)!;
+    this.albumService.updateAlbum(this.currentAlbum).subscribe( data => {
+      this.router.navigate(['albums']);
+    });
   }
 
 }

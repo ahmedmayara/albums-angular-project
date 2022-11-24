@@ -2,23 +2,32 @@ import { Injectable } from '@angular/core';
 import { Album } from '../model/album.model';
 import { Label } from '../model/label.model';
 
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class AlbumService {
 
+  apiURL: string = 'http://localhost:8090/albums/api';
+
   albums : Album[];
   album!: Album;
-  labels!: Label[];
+  /* labels!: Label[]; */
 
-  constructor() {
-    this.labels = [
+  constructor(private http: HttpClient) {
+    /* this.labels = [
       {idLabel: 1, labelName: "EMI", labelFounder: "John Smith", labelCountry: "USA"},
       {idLabel: 2, labelName: "Sony", labelFounder: "John Smith", labelCountry: "USA"},
       {idLabel: 3, labelName: "Universal", labelFounder: "John Smith", labelCountry: "USA"},
       {idLabel: 4, labelName: "Warner", labelFounder: "John Smith", labelCountry: "USA"},
       {idLabel: 5, labelName: "BMG", labelFounder: "John Smith", labelCountry: "USA"},
-    ];
+    ]; */
 
     this.albums = [
       {
@@ -68,33 +77,42 @@ export class AlbumService {
     ];
     }
 
-    labelsList():Label[] {
+    /* labelsList():Label[] {
       return this.labels;
     }
 
     getLabelById(id:number):Label {
       return this.labels.find(l => l.idLabel == id)!;
+    } */
+
+    albumsList (): Observable<Album[]> {
+      return this.http.get<Album[]>(this.apiURL);
     }
 
-    albumList():Album[] {
-      return this.albums;
+    addAlbum ( al:Album ): Observable<Album> {
+      return this.http.post<Album>(this.apiURL, al, httpOptions);
     }
 
-    addAlbum(al:Album) {
-      this.albums.push(al);
+    deleteAlbum ( id: number ) {
+      const url = `${this.apiURL}/${id}`;
+      return this.http.delete(url, httpOptions);
     }
 
-    deleteAlbum(al:Album) {
-      this.albums.splice(this.albums.indexOf(al), 1);
+    getAlbumById ( id : number ) : Observable<Album> {
+      const url = `${this.apiURL}/${id}`;
+      return this.http.get<Album>(url);
     }
 
-    getAlbumById(id:number):Album {
-      this.album = this.albums.find(al => al.idAlbum == id)!;
-      return this.album;
+    updateAlbum ( al:Album ): Observable<Album> {
+      return this.http.put<Album>(this.apiURL, al, httpOptions);
     }
 
-    updateAlbum(al:Album) {
-      this.deleteAlbum(al);
-      this.addAlbum(al);
+    labelsList (): Observable<Label[]> {
+      return this.http.get<Label[]>(this.apiURL + '/labels');
+    }
+
+    searchByLabel ( idLabel : number ) : Observable<Album[]> {
+      const url = `${this.apiURL}/labels/${idLabel}`;
+      return this.http.get<Album[]>(url);
     }
   }

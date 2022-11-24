@@ -1,5 +1,5 @@
 export class Label {
-    idLabel!: number;
+    idLabel?: number;
     labelName!: string;
     labelFounder!: string;
     labelCountry!: string;
