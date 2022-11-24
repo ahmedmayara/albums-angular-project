@@ -1,0 +1,39 @@
+<div class="container">
+    <div>
+        <h2>Update An Album :</h2>
+    </div>
+    <form>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Album ID :</label>
+            <input readonly type="text" [(ngModel)]="currentAlbum.idAlbum" name="idAlbum" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Album Title :</label>
+            <input type="text" [(ngModel)]="currentAlbum.title" name="albumTitle" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Artist Name :</label>
+            <input type="text" [(ngModel)]="currentAlbum.artist" name="albumArtist" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Release Date :</label>
+            <input type="date" [ngModel]="currentAlbum.releaseDate | date: 'yyyy-MM-dd'"
+                (ngModelChange)=" currentAlbum.releaseDate= $event" name="releaseDate" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Genre :</label>
+            <input type="text" [(ngModel)]="currentAlbum.genre" name="albumGenre" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Label :</label>
+            <select class="form-control form-control-lg" id="idLab" name="idLab" [(ngModel)]="updatedLabelId">
+                <option *ngFor="let lab of labels" [value]="lab.idLabel">
+                    {{lab.labelName}}
+                </option>
+            </select>
+        </div>
+        <div class="mt-2">
+            <button type="submit" (click)="updateAlbum()" class="btn btn-success">Update</button>
+        </div>
+    </form>
+</div>
