@@ -5,13 +5,20 @@ import { AddAlbumComponent } from './add-album/add-album.component';
 import { UpdateAlbumComponent } from './update-album/update-album.component';
 import { RechercheParLabelComponent } from './recherche-par-label/recherche-par-label.component';
 import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
+import { ListeLabelsComponent } from './liste-labels/liste-labels.component';
+import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { AlbumGuard } from './album.guard';
 
 const routes: Routes = [
   { path: 'albums', component: AlbumsComponent},
   { path: 'rechercheParLabel', component: RechercheParLabelComponent},
   { path: 'rechercheParNom', component: RechercheParNomComponent},
-  { path: 'add-album', component: AddAlbumComponent},
-  { path: 'updateAlbum/:id', component: UpdateAlbumComponent},
+  { path: 'listeLabels', component: ListeLabelsComponent},
+  { path: 'add-album', component: AddAlbumComponent, canActivate: [AlbumGuard]},
+  { path: 'updateAlbum/:id', component: UpdateAlbumComponent, canActivate: [AlbumGuard]},
+  { path: 'login', component: LoginComponent},
+  { path: 'app-forbidden', component: ForbiddenComponent},
   { path: '', redirectTo: 'albums', pathMatch: 'full' }
 ];
 

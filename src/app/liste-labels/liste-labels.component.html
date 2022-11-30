@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="card shadow mt-4 bg-dark">
+        <div class="card-body">
+            <table class="table table-striped text-white mt-4">
+                <thead>
+                    <tr>
+                        <th>Id :</th>
+                        <th>Label Name :</th>
+                        <th>Label Founder :</th>
+                        <th>Label Country :</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let lab of labels">
+                    <tr>
+                        <td>{{lab.idLabel}}</td>
+                        <td>{{lab.labelName}}</td>
+                        <td>{{lab.labelFounder}}</td>
+                        <td>{{lab.labelCountry}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -19,13 +19,14 @@ export class RechercheParLabelComponent implements OnInit {
   ngOnInit(): void {
     this.albumService.labelsList().subscribe(data => {
       this.labels = data;
-    });
-  }
-  
-  onChange() {
-    this.albumService.searchByLabel(this.idLabel).subscribe(data => {
-      this.albums = data;
+      console.log(data);
     });
   }
 
+  onChange() {
+    this.albumService.searchByLabel(this.idLabel).subscribe (albs => {
+      this.albums = albs;
+      console.log(albs);
+    })
+  }
 }

@@ -10,6 +10,10 @@ import { AddAlbumComponent } from './add-album/add-album.component';
 import { UpdateAlbumComponent } from './update-album/update-album.component';
 import { RechercheParLabelComponent } from './recherche-par-label/recherche-par-label.component';
 import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
+import { ListeLabelsComponent } from './liste-labels/liste-labels.component';
+import { UpdateLabelComponent } from './update-label/update-label.component';
+import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,10 @@ import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.
     UpdateAlbumComponent,
     RechercheParLabelComponent,
     RechercheParNomComponent,
+    ListeLabelsComponent,
+    UpdateLabelComponent,
+    LoginComponent,
+    ForbiddenComponent,
   ],
   imports: [
     BrowserModule,

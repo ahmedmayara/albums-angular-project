@@ -24,15 +24,16 @@ export class AddAlbumComponent implements OnInit {
     this.albumService.labelsList().subscribe (data => {
       this.labels = data;
       console.log(data);
+      console.log(this.newLabelId);
     })
   }
 
   addAlbum() {
     /* this.newLabel = this.albumService.getLabelById(this.newLabelId); */
     /* this.newAlbum.label = this.newLabel; */
-
-    this.newAlbum.label = this.labels.find (lab => lab.idLabel === this.newLabelId)!;
-
+    //console.log(this.newLabelId);
+    this.newAlbum.label = this.labels.find (lab => lab.idLabel == this.newLabelId)!;
+    console.log(this.newAlbum.label);
     this.albumService.addAlbum(this.newAlbum).subscribe( data => {
       console.log(data);
       this.router.navigate(['albums']);

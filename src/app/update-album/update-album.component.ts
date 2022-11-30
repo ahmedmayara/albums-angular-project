@@ -30,12 +30,14 @@ export class UpdateAlbumComponent implements OnInit {
     this.albumService.getAlbumById(this.activatedRoute.snapshot.params['id']).subscribe( data => {
       this.currentAlbum = data;
       this.updatedLabelId = this.currentAlbum.label.idLabel;
+      console.log(this.updatedLabelId)
     });
   }
 
   updateAlbum() {
     /* this.currentAlbum.label = this.albumService.getLabelById(this.updatedLabelId); */
-    this.currentAlbum.label = this.labels.find (lab => lab.idLabel === this.updatedLabelId)!;
+    console.log(this.updatedLabelId)
+    this.currentAlbum.label.idLabel=this.updatedLabelId
     this.albumService.updateAlbum(this.currentAlbum).subscribe( data => {
       this.router.navigate(['albums']);
     });
