@@ -10,7 +10,6 @@ import { AlbumService } from '../services/album.service';
 export class ListeLabelsComponent implements OnInit {
 
   labels!: Label[];
-  updatedLab: Label = {"idLabel": 1, "labelName": "", "labelFounder": "", "labelCountry": ""};
 
   constructor(private albumService : AlbumService) { }
 
@@ -18,10 +17,6 @@ export class ListeLabelsComponent implements OnInit {
     this.albumService.labelsList().subscribe(data => {
       this.labels = data;
     });
-  }
-
-  labelUpdated(label: Label) {
-    console.log("Label recue", label);
   }
 
 }

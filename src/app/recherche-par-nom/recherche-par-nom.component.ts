@@ -22,7 +22,7 @@ export class RechercheParNomComponent implements OnInit {
   }
 
   onKeyUp(filterText : string) {
-    this.albums = this.allAlbums.filter(album => album.title.toLowerCase().includes(filterText.toLowerCase()));
+    this.albums = this.allAlbums.filter(album => album.title.toLowerCase().includes(filterText.toLowerCase())); 
   }
 
 }

@@ -111,8 +111,8 @@ export class AlbumService {
       return this.http.get<Label[]>(this.apiURL + '/labels');
     }
 
-    searchByLabel ( idLabel : number ) : Observable<Album[]> {
-      const url = `${this.apiURL}/labels/${idLabel}`;
+    rechrcheParLabel ( idLabel : number ) : Observable< Album[] > {
+      const url = `${this.apiURL}/label/${idLabel}`;
       return this.http.get<Album[]>(url);
     }
   }

@@ -8,12 +8,12 @@ import { AppComponent } from './app.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { AddAlbumComponent } from './add-album/add-album.component';
 import { UpdateAlbumComponent } from './update-album/update-album.component';
-import { RechercheParLabelComponent } from './recherche-par-label/recherche-par-label.component';
 import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
 import { ListeLabelsComponent } from './liste-labels/liste-labels.component';
 import { UpdateLabelComponent } from './update-label/update-label.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { SearchByLabelComponent } from './search-by-label/search-by-label.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +21,12 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     AlbumsComponent,
     AddAlbumComponent,
     UpdateAlbumComponent,
-    RechercheParLabelComponent,
     RechercheParNomComponent,
     ListeLabelsComponent,
     UpdateLabelComponent,
     LoginComponent,
     ForbiddenComponent,
+    SearchByLabelComponent,
   ],
   imports: [
     BrowserModule,
