@@ -11,13 +11,16 @@ export class UpdateLabelComponent implements OnInit {
   @Input()
   label!: Label;
 
+  @Input()
+  ajout!: boolean;
+
   @Output()
   labelUpdated = new EventEmitter<Label>();
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log("ngOnInit() de UpdateLabelComponent", + this.label);
+    console.log("NgOnInit UpdateLabelComponent", this.label);
   }
 
   saveLabel() {

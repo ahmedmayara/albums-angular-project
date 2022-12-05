@@ -11,12 +11,32 @@ export class ListeLabelsComponent implements OnInit {
 
   labels!: Label[];
 
+  updatedLab: Label = {"idLabel":0, "labelName":"", "labelFounder":"", "labelCountry":""};
+
+  ajout: boolean = true;
+
   constructor(private albumService : AlbumService) { }
 
   ngOnInit(): void {
     this.albumService.labelsList().subscribe(data => {
       this.labels = data;
     });
+  }
+
+  loadLabels() {
+    this.albumService.labelsList().subscribe(data => {
+      this.labels = data;
+    });
+  }
+
+  labelUpdated(label: Label) {
+    console.log("Lab Updated event received", label);
+    this.albumService.addLabel(label).subscribe (() => {this.loadLabels();});
+  }
+
+  updateLab(lab : Label) {
+    this.updatedLab = lab;
+    this.ajout = false;
   }
 
 }

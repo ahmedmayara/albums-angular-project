@@ -115,4 +115,8 @@ export class AlbumService {
       const url = `${this.apiURL}/label/${idLabel}`;
       return this.http.get<Album[]>(url);
     }
+
+    addLabel ( lab:Label ): Observable<Label> {
+      return this.http.post<Label>(this.apiURL + '/labels', lab, httpOptions);
+    }
   }
